@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+
+import roslib
+import rospy
+from std_msgs.msg import String
+from Tkinter import *
+
+class ImageScreen:
+	master = Tk()
+	imgobj = PhotoImage(file = './test.gif')
+	win_w = master.winfo_screenwidth()
+	win_h = master.winfo_screenheight()
+	w = Canvas(master, width = win_w, height = win_h)
+
+	def __init__(self):
+		self.master.config(bg='black')
+
+		#master.overrideredirect(1) #THIS KILLS THE COMPUTER!!!
+		self.master.geometry("%dx%d+0+0" % (self.win_w, self.win_h))
+
+		self.w.pack(expand = YES, fill = BOTH)
+
+		self.master.focus_set()
+		self.master.bind_all('<Key>', self.keylisten)
+		self.master.bind("<Button-1>", self.mouselistener)
+		self.repaint()
+
+	def repaint(self):
+
+		self.w.create_image((self.win_w - self.imgobj.width())/2, (self.win_h - self.imgobj.height())/2, image = self.imgobj, anchor = NW)
+
+
+	#This is where we work with key events
+	def keylisten(self, event):
+		self.master.destroy()
+
+	#This is where we work with mouse events
+	def mouselistener(self, event):
+		print event.x, event.y
+		if event.x > self.win_w/2 :
+			self.imgobj = PhotoImage(file = './test2.gif')
+			self.repaint()
+		else :
+			self.imgobj = PhotoImage(file = './test.gif')
+			self.repaint()
+def callback(data):
+	root.imgobj = PhotoImage(file = './test.gif')
+	rospy.loginfo(rospy.get_name() + "I heard %s" % data.data)
+
+def listener():
+	rospy.init_node('listener', anonymous = True)
+	rospy.Subscriber("chatter", String, callback)
+	rospy.spin()		
+
+root = ImageScreen()
+mainloop()

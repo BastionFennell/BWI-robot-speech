@@ -1,0 +1,17 @@
+<package>
+  <description brief="visual_front_end">
+
+     visual_front_end
+
+  </description>
+  <author>Bastion Fennell</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/visual_front_end</url>
+  <depend package="std_msgs"/>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="roslib"/>
+</package>
+
+
