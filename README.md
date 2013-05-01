@@ -5,7 +5,7 @@ This is the robot speech node for the BWI GUI research group at UT Austin. This 
 Installation
 -------
 	Clone into your ros path
-	`rosmake BWI-robot-speech`
+	rosmake BWI-robot-speech
 
 Use
 -------
