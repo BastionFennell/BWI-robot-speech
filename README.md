@@ -15,5 +15,5 @@ As stated, this nod requires the audio common library. To use this node, start u
 Then, run the listener node in the BWI-robot-speech package
 * `rosrun BWI-robot-speech listener.py`
 
-To say a string, publish an `std_msgs::String` message with the String you want to say to the `/audio_say` topic. 
-To play a wav file, publish an `std_msgs::String` message with the absolute file path to the wav file to the `/audio_wav` topic.
+To say a string, publish a string that you want to say to the `/audio_say` topic. 
+To play a wav file, publish a string message with the absolute file path to the wav file to the `/audio_wav` topic.
